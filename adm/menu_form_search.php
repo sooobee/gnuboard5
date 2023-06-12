@@ -77,6 +77,7 @@ if ($sql) {
 
             <td class="td_mngsmall">
                 <input type="hidden" name="subject[]" value="<?php echo preg_replace('/[\'\"]/', '', $row['subject']); ?>">
+                <button type="button" class="add_select btn btn_03"><span class="sound_only"><?php echo $row['subject']; ?> </span>선택</button>
                 <input type="hidden" name="link[]" value="<?php echo $link; ?>">
                 <input type="checkbox" id="myCheckbox" class = "add_select" name="subject[]" value="<?php echo $row['subject'];?>"><span class="sound_only" onclick="toggleCheckbox()"></span> </input>
 
