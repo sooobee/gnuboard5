@@ -669,6 +669,46 @@ if($g5_shop_install) {
 
 </div>
 
+ <!-- http 보안 추가 안내 -->
+ 
+<div class="ins_inner">
+
+    <h2>http 보안을 강화하기 위해서는 다음의 과정을 따르십시오.</h2>
+
+    <ol>
+        <li>root의 htaccess 파일의 최상단에 아래 코드를 입력해줍니다.</li>
+        <li>RewriteEngine On</li>
+        <li>RewriteCond %{HTTPS} off</li>
+        <li>RewriteRule (.*) https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]</li>
+    </ol>
+
+    <ol>
+        <li>/extend/user.config.php 파일에 아래 코드를 추가해줍니다.</li>
+        <li>if(empty($_SERVER['HTTPS']) || $_SERVER['HTTPS'] == "off"){</li>
+        <li>        $redirect = 'https://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];</li>
+        <li>        header('HTTP/1.1 301 Moved Permanently');</li>
+        <li>        header('Location: ' . $redirect);<br>}</li>
+    </ol>
+
+    <ol>
+        <li>최상위 위치의 config.php 파일에 아래 코드를 변경해줍니다.</li>
+        <li>변경 전</li>
+        <li>define('G5_DOMAIN', '');</li>
+        <li>define('G5_HTTPS_DOMAIN', '');<br></li>
+        <li>변경 후</li>
+        <li>define('G5_DOMAIN', 'http://zpxlcm.tistory.com');</li>
+        <li>define('G5_HTTPS_DOMAIN', '');</li>
+        
+    </ol>
+    <div class="inner_btn">
+        <a href="../index.php">새로운 그누보드5로 이동</a>
+    </div>
+
+</div>
+
+
+
+
 <div class="ins_inner">
 
     <h2>환경설정 변경은 다음의 과정을 따르십시오.</h2>
@@ -683,8 +723,11 @@ if($g5_shop_install) {
     <div class="inner_btn">
         <a href="../index.php">새로운 그누보드5로 이동</a>
     </div>
+        $_COOKIE
+
 
 </div>
+
 
 <?php
 include_once ('./install.inc2.php');
